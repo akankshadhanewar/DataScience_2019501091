@@ -1,0 +1,20 @@
+---
+title: "Implement Apriori Algorithm or use built in packages to find out the frequent itemsets and generate rules for frequent itemsets. Trace and submit the program output for the following given dataset of transactions with a minimum support of 3.  "
+output: html_notebook
+---
+
+```{r}
+transactions <- read.csv("~/Downloads/Final exam/2/transactions.csv")
+View(transactions)
+transactions$TID <- NULL
+library(arules)
+
+transactions = read.transactions("transactions.csv", sep=',', rm.duplicates = TRUE)
+
+rules <- apriori(transactions, parameter = list(sup = 0.03, conf = 0.5,target="rules"))
+
+inspect(sort(basket_rules, by = 'lift')[1:15])
+
+itemFrequencyPlot(transactions, topN = 5)
+```
+

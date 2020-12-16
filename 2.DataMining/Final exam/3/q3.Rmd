@@ -1,0 +1,49 @@
+---
+title: "Build Decision Trees by using i) information gain and ii) misclassification error rate for Lenses Data Set provided at http://archive.ics.uci.edu/ml/datasets/Lenses.  In terms of tree size what do you conclude comparing these two?		"
+output: html_notebook
+---
+
+
+```{r}
+
+install.packages("caret")
+library(caret)
+library(rpart.plot)
+
+data_url <- c("http://archive.ics.uci.edu/ml/datasets/Lenses")
+download.file(url = data_url, destfile = "lenses.data")
+
+l_data <- read.csv("~/Downloads/Final exam/3/lenses_data.csv")
+View(l_data)
+
+str(l_data)
+summary(l_data)
+
+x = l_data[,1:4]
+y = as.factor(l_data$Label)
+
+
+model = rpart(y~.,x,control=rpart.control(minsplit=0,minbucket=0,cp=-1, maxcompete=0, maxsurrogate=0, usesurrogate=0, xval=0,maxdepth=5))
+
+plot(model)
+text(model)
+
+rpart.plot(model)
+
+sum(y==predict(model,x,type="class"))/length(y)
+
+1-sum(y==predict(model,x,type="class"))/length(y)
+
+model1 = rpart(y~.,x,control=rpart.control(minsplit=0,minbucket=0,cp=-1, maxcompete=0, maxsurrogate=0, usesurrogate=0, xval=0,maxdepth=7))
+
+plot(model1)
+text(model1)
+
+rpart.plot(model1)
+
+sum(y==predict(model1,x,type="class"))/length(y)
+
+1-sum(y==predict(model1,x,type="class"))/length(y)
+
+```
+

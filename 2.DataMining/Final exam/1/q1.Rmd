@@ -1,0 +1,225 @@
+---
+title: "For the dataset BSE_Sensex_Index.csv, create an extra column of successive differences for each column of numeric values in this data file. Extract two simple random samples with replacement of 1000 and 3000 observations (rows). Show your R commands for doing this. Do the same thing by using Excel. Show your Excel commands."
+output: html_notebook
+---
+
+```{r}
+
+BSE_Sensex_Index <- read.csv("~/Downloads/Final exam/BSE_Sensex_Index.csv")
+View(BSE_Sensex_Index)
+
+df <- BSE_Sensex_Index
+
+df $successive_diff_open <- c(0, diff(df $Open))
+df$Successive_diff_high <- c(0, diff(df $High))
+df $Successive_diff_low <- c(0, diff(df $Low))
+df $Successive_diff_close <- c(0, diff(df $Close))
+df $Successive_diff_vol <- c(0, diff(df $Volume))
+df $Successive_diff_adjclo <- c(0, diff(df $Adj.Close))
+View(df)
+
+str(df)
+
+sample1 = sample(seq(1,length(df$Open)),1000,replace = T)
+sample2 = sample(seq(1,length(df$Open)),3000,replace = T)
+
+
+sample_open_1 = df[sample1,8]
+mean(sample_open_1)
+max(sample_open_1)
+var(sample_open_1)
+quantile(sample_open_1,.25)
+
+sample_open_2 = df[sample2,8]
+mean(sample_open_2)
+max(sample_open_2)
+var(sample_open_2)
+quantile(sample_open_2,.25)
+
+
+sample_high_1 = df[sample1,9]
+mean(sample_high_1)
+max(sample_high_1)
+var(sample_high_1)
+quantile(sample_high_1,.25)
+
+sample_high_2 = df[sample2,9]
+mean(sample_high_2)
+max(sample_high_2)
+var(sample_high_2)
+quantile(sample_high_2,.25)
+
+
+
+sample_low_1 = df[sample1,10]
+mean(sample_low_1)
+max(sample_low_1)
+var(sample_low_1)
+quantile(sample_low_1,.25)
+
+sample_low_2 = df[sample2,10]
+mean(sample_low_2)
+max(sample_low_2)
+var(sample_low_2)
+quantile(sample_low_2,.25)
+
+sample_close_1 = df[sample1,11]
+mean(sample_close_1)
+max(sample_close_1)
+var(sample_close_1)
+quantile(sample_close_1,.25)
+
+sample_close_2 = df[sample2,11]
+mean(sample_close_2)
+max(sample_close_2)
+var(sample_close_2)
+quantile(sample_close_2,.25)
+
+sample_vol_1 = df[sample1,12]
+mean(sample_vol_1)
+max(sample_vol_1)
+var(sample_vol_1)
+quantile(sample_vol_1,.25)
+
+sample_vol_2 = df[sample2,12]
+mean(sample_vol_2)
+max(sample_vol_2)
+var(sample_vol_2)
+quantile(sample_vol_2,.25)
+
+
+
+sample_adj_clo_1 = df[sample1,13]
+mean(sample_adj_clo_1)
+max(sample_adj_clo_1)
+var(sample_adj_clo_1)
+quantile(sample_adj_clo_1,.25)
+
+sample_adj_clo_2 <- df[sample2,13]
+mean(sample_adj_clo_2)
+max(sample_adj_clo_2)
+var(sample_adj_clo_2)
+quantile(sample_adj_clo_2,.25)
+
+mean(df$successive_diff_open)
+max(df$successive_diff_open)
+var(df$successive_diff_open)
+quantile(df$successive_diff_open,.25)
+
+
+abs(mean(sample_open_1)-mean(df$successive_diff_open))
+abs(max(sample_open_1)-max(df$successive_diff_open))
+abs(var(sample_open_1)-var(df$successive_diff_open))
+abs(quantile(sample_open_1,.25)-quantile(df$successive_diff_open,.25))
+
+
+abs(mean(sample_open_2)-mean(df$successive_diff_open))
+abs(max(sample_open_2)-max(df$successive_diff_open))
+abs(var(sample_open_2)-var(df$successive_diff_open))
+abs(quantile(sample_open_2,.25)-quantile(df$successive_diff_open,.25))
+
+
+mean(df$Successive_diff_high)
+max(df$Successive_diff_high)
+var(df$Successive_diff_high)
+quantile(df$Successive_diff_high,.25)
+
+abs(mean(sample_high_1)-mean(df$Successive_diff_high))
+abs(max(sample_high_1)-max(df$Successive_diff_high))
+abs(var(sample_high_1)-var(df$Successive_diff_high))
+abs(quantile(sample_high_1,.25)-quantile(df$Successive_diff_high,.25))
+
+
+abs(mean(sample_high_2)-mean(df$Successive_diff_high))
+abs(max(sample_high_2)-max(df$Successive_diff_high))
+abs(var(sample_high_2)-var(df$Successive_diff_high))
+abs(quantile(sample_high_2,.25)-quantile(df$Successive_diff_high,.25))
+
+
+
+mean(df$Successive_diff_low)
+max(df$Successive_diff_low)
+var(df$Successive_diff_low)
+quantile(df$Successive_diff_low,.25)
+
+abs(mean(sample_low_1)-mean(df$Successive_diff_low))
+abs(max(sample_low_1)-max(df$Successive_diff_low))
+abs(var(sample_low_1)-var(df$Successive_diff_low))
+abs(quantile(sample_low_1,.25)-quantile(df$Successive_diff_low,.25))
+
+
+abs(mean(sample_low_2)-mean(df$Successive_diff_low))
+abs(max(sample_low_2)-max(df$Successive_diff_low))
+abs(var(sample_low_2)-var(df$Successive_diff_low))
+abs(quantile(sample_low_2,.25)-quantile(df$Successive_diff_low,.25))
+
+
+
+mean(df$Successive_diff_close )
+max(df$Successive_diff_close )
+var(df$Successive_diff_close )
+quantile(df$Successive_diff_close ,.25)
+
+abs(mean(sample_close_1)-mean(df$Successive_diff_close ))
+abs(max(sample_close_1)-max(df$Successive_diff_close ))
+abs(var(sample_close_1)-var(df$Successive_diff_close ))
+abs(quantile(sample_close_1,.25)-quantile(df$Successive_diff_close ,.25))
+
+
+abs(mean(sample_close_2)-mean(df$Successive_diff_close ))
+abs(max(sample_close_2)-max(df$Successive_diff_close ))
+abs(var(sample_close_2)-var(df$Successive_diff_close ))
+abs(quantile(sample_close_2,.25)-quantile(df$Successive_diff_close ,.25))
+
+
+mean(df$Successive_diff_vol )
+max(df$Successive_diff_vol )
+var(df$Successive_diff_vol )
+quantile(df$Successive_diff_vol ,.25)
+
+abs(mean(sample_vol_1)-mean(df$Successive_diff_vol ))
+abs(max(sample_vol_1)-max(df$Successive_diff_vol ))
+abs(var(sample_vol_1)-var(df$Successive_diff_vol ))
+abs(quantile(sample_vol_1,.25)-quantile(df$Successive_diff_vol ,.25))
+
+
+abs(mean(sample_vol_2)-mean(df$Successive_diff_vol ))
+abs(max(sample_vol_2)-max(df$Successive_diff_vol ))
+abs(var(sample_vol_2)-var(df$Successive_diff_vol ))
+abs(quantile(sample_vol_2,.25)-quantile(df$Successive_diff_vol ,.25))
+
+
+mean(df$Successive_diff_adjclo )
+max(df$Successive_diff_adjclo )
+var(df$Successive_diff_adjclo )
+quantile(df$Successive_diff_adjclo ,.25)
+
+abs(mean(sample_adj_clo_1)-mean(df$Successive_diff_adjclo ))
+abs(max(sample_adj_clo_1)-max(df$Successive_diff_adjclo ))
+abs(var(sample_adj_clo_1)-var(df$Successive_diff_adjclo ))
+abs(quantile(sample_adj_clo_1,.25)-quantile(df$Successive_diff_adjclo ,.25))
+
+
+abs(mean(sample_adj_clo_2)-mean(df$Successive_diff_adjclo ))
+abs(max(sample_adj_clo_2)-max(df$Successive_diff_adjclo ))
+abs(var(sample_adj_clo_2)-var(df$Successive_diff_adjclo ))
+abs(quantile(sample_adj_clo_2,.25)-quantile(df$Successive_diff_adjclo ,.25))
+
+
+
+boxplot(df$successive_diff_open,
+        df$Successive_diff_high,
+        df$Successive_diff_low,
+        df$Successive_diff_close ,
+        df$Successive_diff_vol ,
+        df$Successive_diff_adjclo 
+        ,col = 'blue', main = 'Boxplot', names=c("Open","High", "Low", "Close", "volume", "adj"))
+
+
+
+
+df$c = as.numeric(df$Close)
+
+hist(df$c,breaks=seq(0,20000,by=2000),col='blue',xlab = "Close",ylab = "Frequency",main = "Histogram Plot")
+```
+
